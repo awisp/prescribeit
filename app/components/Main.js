@@ -11,6 +11,8 @@ export default class Main extends React.Component {
 
     this.state = {
       prescriptionName: null,
+      prescriptionRefill: null,
+      prescriptionRenew: null,
       prescriptions: [],
       visible: false
     }  
@@ -30,7 +32,9 @@ export default class Main extends React.Component {
   handleOK() {
     // if(this.state.prescriptionName == null) this.state.prescriptionName = "Adduduvil";
     this.state.prescriptions.push({
-      presName: this.state.prescriptionName
+      presName: this.state.prescriptionName,
+      nextRefill: this.state.prescriptionRefill,
+      nextRenew: this.state.prescriptionRenew
     })
 
     this.setState({ prescriptionName: null, prescriptions: this.state.prescriptions, visible: false })
@@ -64,14 +68,23 @@ export default class Main extends React.Component {
             title={ 'Add Prescription' }>
           </Button>
           <Dialog.Container visible={this.state.visible}>
-            <Dialog.Title>Account delete</Dialog.Title>
-            <Dialog.Description>
+            <Dialog.Title>Add Prescription</Dialog.Title>
+            {/* <Dialog.Description>
                 Do you want to delete this account? You cannot undo this action.
-            </Dialog.Description>
-            <Dialog.Input label="Please enter name of medication" 
+            </Dialog.Description> */}
+
+            <Dialog.Input label="Enter name of medication" 
                 onChangeText={(nm) => 
-                    this.setState({ prescriptionName: nm })}
-                    value={this.state.prescriptionName} />
+                    this.setState({ prescriptionName: nm })}/>
+
+            <Dialog.Input label="Enter next date of refill" 
+                onChangeText={(rf) => 
+                    this.setState({ prescriptionRefill: rf })}/>
+
+            <Dialog.Input label="Enter next date of renewal" 
+                onChangeText={(rn) => 
+                    this.setState({ prescriptionRenew: rn })}/>
+
             <Dialog.Button label="Cancel" onPress={() => this.handleCancel()} />
             <Dialog.Button label="OK" onPress={() => this.handleOK()} />
             </Dialog.Container>

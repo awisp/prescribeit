@@ -6,9 +6,12 @@ export default class Prescription extends React.Component {
     return (
       <View key={this.props.keyval} style={styles.meeting}>
         <Text style={styles.meetingText}>{this.props.val.presName.toString()}</Text>
+        <Text style={styles.meetingText}>Next refill date: {this.props.val.nextRefill.toString()}</Text>
+        <Text style={styles.meetingText}>Next renew date: {this.props.val.nextRenew.toString()}</Text>
+
 
         <TouchableOpacity onPress={this.props.deleteMethod} style={styles.deleteMeeting}>
-          <Text style={styles.deleteMeetingText}>Delete</Text>
+          <Text style={styles.deleteMeetingText}>Refill</Text>
         </TouchableOpacity>
       </View>
     );
