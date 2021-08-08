@@ -8,6 +8,7 @@
 
 import React from 'react';
 import Main from "./app/components/Main";
+import PCalendar from "./app/components/PCalendar";
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -71,11 +72,9 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          {/* <Section title="Prescription Calendar">
-            Jonathan is a poop
-          </Section> */}
-          
+          <PCalendar />
           <Main />
+          
         </View>
       </ScrollView>
     </SafeAreaView>

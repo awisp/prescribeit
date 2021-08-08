@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Alert } from 'react-native';
 import Prescription from './Prescription'
-import Dialog from "react-native-dialog";
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 
-export default class Main extends React.Component {
+export default class PCalendar extends React.Component {
     
   constructor(props) {
     super(props)
@@ -45,43 +45,55 @@ export default class Main extends React.Component {
   }
 
   render() {
-
+    const medicine1 = {key: 'medicine1', color: 'red'};
+    const medicine2 = {key: 'medicine2', color: 'blue'};
+    const medicine3 = {key: 'medicine3', color: 'green'};
     let prescriptions = this.state.prescriptions.map((val, key) => {
       return <Prescription key={key} keyval={key} val={val} deleteMethod={ () => this.deletePrescription(key) } />
     })
 
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Prescriptions</Text>
+        </View>
 
-        <ScrollView style={styles.scrollContainer}>
+        {/* <ScrollView style={styles.scrollContainer}>
           { prescriptions }
-        </ScrollView>
+        </ScrollView> */}
 
         <View style={styles.actions}>
-          <Button
-            onPress={
-                () => this.addPrescription()
-            }
-            title={ 'Add Prescription' }>
-          </Button>
-          <Dialog.Container visible={this.state.visible}>
-            <Dialog.Title>Add Prescription</Dialog.Title>
+        <Calendar
+          markingType={'multi-dot'}
+          markedDates={{
+            '2021-08-02': {dots: [medicine1, medicine3]},
+            '2021-08-03': {dots: [medicine2]},
+            '2021-08-04': {dots: [medicine1]},
+            '2021-08-06': {dots: [medicine1, medicine2]},
+            '2021-08-07': {dots: [medicine3]},
+            '2021-08-08': {dots: [medicine1]},
+            '2021-08-09': {dots: [medicine2]},
+            '2021-08-10': {dots: [medicine1]},
+            '2021-08-11': { selected: true, selectedColor: 'green' },
+            '2021-08-12': {dots: [medicine1, medicine2, medicine3]},
+            '2021-08-14': {dots: [medicine1]},
+            '2021-08-15': {dots: [medicine2]},
+            '2021-08-16': {dots: [medicine1]},
+            '2021-08-17': {dots: [medicine3]},
+            '2021-08-18': {dots: [medicine1, medicine2]},
+            '2021-08-20': {dots: [medicine1]},
+            '2021-08-21': {dots: [medicine2]},
+            '2021-08-22': {dots: [medicine1, medicine3]},
+            '2021-08-24': {dots: [medicine1, medicine2]},
+            '2021-08-26': {dots: [medicine1]},
+            '2021-08-27': {dots: [medicine2, medicine3]},
 
-            <Dialog.Input label="Enter name of medication" 
-                onChangeText={(nm) => 
-                    this.setState({ prescriptionName: nm })}/>
+            '2021-08-28': {dots: [medicine1]},
+            '2021-08-30': {dots: [medicine1, medicine2]},
 
-            <Dialog.Input label="Enter next date of refill" 
-                onChangeText={(rf) => 
-                    this.setState({ prescriptionRefill: rf })}/>
+          }}
+        />
 
-            <Dialog.Input label="Enter next date of renewal" 
-                onChangeText={(rn) => 
-                    this.setState({ prescriptionRenew: rn })}/>
-
-            <Dialog.Button label="Cancel" onPress={() => this.handleCancel()} />
-            <Dialog.Button label="OK" onPress={() => this.handleOK()} />
-            </Dialog.Container>
         </View>
 
       </View>
