@@ -17,3 +17,5 @@ Over the span of less than two days, we managed to write a working prototype app
 We now know how to use React Native, and also understand how the renewal of pharmaceutical drugs works.
 ## What's next for PrescribeIt
 In the future, we will complete the app by connecting it with external APIs from CVS and Walgreens and adding new features. After it is complete, we will work on publishing the app on the Google Play Store and App Store.
+
+Devpost: https://devpost.com/software/prescriptions
